@@ -43,6 +43,7 @@ exports.createEmail = async (req, res) => {
                 from: process.env.EMAIL_ADDRESS,
                 subject: subject,
                 htm: html,
+                status: 'new',
                 email: to,
                 openedAt: null,
                 viewCount: 0
@@ -65,14 +66,27 @@ exports.trackEmail = async (req, res) => {
     }
 
     try {
-        const emailOpen = await EmailOpen.findOneAndUpdate(
-            { email },
-            { $set: { openedAt: new Date() }, $inc: { viewCount: 1 } },
-            { new: true }
-        );
+        const emailOpen = await EmailOpen.findOne({ email });
 
-        if (!emailOpen) {
-            await EmailOpen.create({ email, openedAt: new Date(), viewCount: 1 });
+        if (emailOpen) {
+            let newStatus;
+            if (emailOpen.status === 'new') {
+                newStatus = 'opened';
+            } else {
+                newStatus = 'reopened';
+            }
+
+            await EmailOpen.updateOne(
+                { email },
+                { $set: { openedAt: new Date(), status: newStatus }, $inc: { viewCount: 1 } }
+            );
+        } else {
+            await EmailOpen.create({
+                email,
+                status: 'opened',
+                openedAt: new Date(),
+                viewCount: 1
+            });
         }
 
         res.setHeader('Content-Type', 'image/png');
