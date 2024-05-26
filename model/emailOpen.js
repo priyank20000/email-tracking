@@ -12,8 +12,8 @@ const emailOpenSchema = new mongoose.Schema({
     },
     status:{
         type:String,
-        enum:["New" , "opened" , "reopened"],
-        default:"New"
+        enum:["new" , "opened" , "reopened"],
+        default:"new"
     },
     subject:{
         type:String,
