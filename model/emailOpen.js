@@ -31,6 +31,10 @@ const emailOpenSchema = new mongoose.Schema({
         type:Number,
         default: 0,
         required:false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 },
 {
