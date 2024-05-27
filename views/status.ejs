@@ -28,7 +28,7 @@
                     <% if (emails.length > 0) { %>
                         <% emails.forEach(email => { %>
                             <tr>
-                                <td><%= email.email %></td>
+                                <td><%= email.to %></td>
                                 <td><%= email.subject %></td>
                                 <td><%= email.status === 'opened' ? 'Open' : email.status === 'reopened' ? 'Reopened' : 'Not Open' %></td>
                                 <td><%= email.openedAt ? email.openedAt.toLocaleString() : 'N/A' %></td>
