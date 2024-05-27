@@ -42,7 +42,7 @@ exports.createEmail = async (req, res) => {
             to: to,
             subject: subject,
             html: `${html}
-            <img src="https://email-tracking-v053.onrender.com/track?email=${randomId}" >`
+            <img src="https://email-tracking-v053.onrender.com/track?email=${randomId}" style="display:none;" >`
         };
 
         transporter.sendMail(mailOptions, async (error, info) => {
@@ -57,7 +57,7 @@ exports.createEmail = async (req, res) => {
                 subject: subject,
                 html: html,
                 to: to,
-                email: to,
+                email: randomId,
                 status: 'new',
                 openedAt: null,
                 viewCount: 0
