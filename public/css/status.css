@@ -1,0 +1,155 @@
+/* Updated CSS with changed class names */
+
+:root {
+    /* Colors */
+    --light-color: hsl(0, 0%, 100%);
+    --dark-color: hsl(0, 0%, 0%);
+    /* Font and typography */
+    --main-font: "Poppins", sans-serif;
+    --heading-font-size: 1.75rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .813rem;
+    /* Font weight */
+    --font-medium: 500;
+    /* Background Image */
+    --bg-image: url('/img/login-bg.png');
+}
+
+/* Base */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body,
+input,
+button {
+    font-size: var(--normal-font-size);
+    font-family: var(--main-font);
+}
+
+body {
+    color: var(--light-color);
+    background: var(--bg-image) no-repeat center center fixed;
+    background-size: cover;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Form Styles */
+.form-container {
+    margin: 100px auto;
+    padding: 27px;
+    width: 900px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+.form-heading {
+    text-align: center;
+    color: var(--light-color);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.alert-box {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #3498db; /* Keeping the color unchanged */
+    color: var(--light-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--light-color);
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--light-color);
+    color: #333; /* Keeping the color unchanged */
+    border: none;
+}
+
+.custom-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-info {
+    background-color: #3498db; /* Keeping the color unchanged */
+    color: var(--light-color);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px;
+    border: 1px solid var(--light-color);
+    text-align: left;
+    color: var(--light-color);
+}
+
+.data-table th {
+    background-color: #2980b9; /* Keeping the color unchanged */
+    font-weight: bold;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #2c3e50; /* Keeping the color unchanged */
+}
+
+.data-table tr:hover {
+    background-color: #34495e; /* Keeping the color unchanged */
+}
+
+.delete-btn {
+    background-color: #e74c3c; /* Keeping the color unchanged */
+    color: var(--light-color);
+}
+
+.delete-btn:hover {
+    background-color: #c0392b; /* Keeping the color unchanged */
+}
+
+/* Updated CSS with centered table */
+
+.data-table-responsive {
+    overflow-x: auto;
+    margin: 0 auto; /* Center the table horizontally */
+    text-align: center; /* Center text within the table */
+}
+
+/* Rest of your CSS remains unchanged */

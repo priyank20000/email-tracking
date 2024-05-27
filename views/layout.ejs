@@ -1,0 +1,36 @@
+
+
+    
+        <h4>Sending Email Open or Not Status</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th width="20%">Email</th>
+                        <th width="35%">Subject</th>
+                        <th width="10%">Status</th>
+                        <th width="20%">Open Datetime</th>
+                        <th width="15%">View Count</th> 
+                        <th>Active</th><!-- Added View Count column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (emails.length > 0) { %>
+                        <% emails.forEach(email => { %>
+                            <tr>
+                                <td><%= email.email %></td>
+                                <td><%= email.subject %></td>
+                                <td><%= email.status === 'opened' ? 'Open' : email.status === 'reopened' ? 'Reopened' : 'Not Open' %></td>
+                                <td><%= email.openedAt ? email.openedAt.toLocaleString() : 'N/A' %></td>
+                                <td><%= email.viewCount %></td> <!-- Display View Count -->
+                                <td><a href="/delete-email/<%= email._id %>" class="btn btn-danger">Delete</a></td> <!-- Assuming endpoint for delete is '/delete-email/:id' -->
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="5" align="center">No Email Send Data Found</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>

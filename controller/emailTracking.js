@@ -15,6 +15,16 @@ const transporter = nodemailer.createTransport({
     },
 });
 
+exports.index = async (req,res) => {
+    const emails = await EmailOpen.find();
+    res.render('index', { emails, message: '' });
+}
+exports.status = async (req,res) => {
+    const emails = await EmailOpen.find();
+    res.render('status', { emails, message: '' });
+}
+
+
 exports.createEmail = async (req, res) => {
     const { to, subject, html } = req.body;
 
@@ -25,32 +35,37 @@ exports.createEmail = async (req, res) => {
     console.log('Recipient Email:', to);
 
     try {
+        const randomId = Math.random().toString(36).substring(7);
+
         const mailOptions = {
             from: process.env.EMAIL_ADDRESS,
             to: to,
             subject: subject,
             html: `${html}
-            <img src="http://localhost:3000/TrackEmail?email=${to}" >`
+            <img src="https://email-tracking-v053.onrender.com/track?email=${randomId}" >`
         };
 
         transporter.sendMail(mailOptions, async (error, info) => {
             if (error) {
                 console.error('Error sending email:', error);
-                return res.status(500).json({ success: false, message: 'Error sending email' });
+                // return res.status(500).json({ success: false, message: 'Error sending email' });
+                res.render('index', { emails: await EmailOpen.find(), message: 'Email failed to send' });
             }
 
             await EmailOpen.create({
                 from: process.env.EMAIL_ADDRESS,
                 subject: subject,
-                htm: html,
-                status: 'new',
+                html: html,
+                to: to,
                 email: to,
+                status: 'new',
                 openedAt: null,
                 viewCount: 0
             });
-                                        
+
             console.log('Email sent:', info.response);
-            return res.status(200).json({ success: true, message: 'Email sent successfully' });
+            res.render('index', { emails: await EmailOpen.find(), message: 'Email sent successfully' });
+            // return res.status(200).json({ success: true, message: 'Email sent successfully' });
         });
     } catch (error) {
         console.error('Error creating email:', error);
@@ -58,8 +73,24 @@ exports.createEmail = async (req, res) => {
     }
 }
 
+exports.getEmail = async (req, res) => {
+    try {
+        const emails = await EmailOpen.find();
+        res.json(emails); // Send the emails as JSON response
+    } catch (error) {
+        console.error('Error fetching emails:', error);
+        res.status(500).json({ error: 'Internal server error' }); // Send an error response if something goes wrong
+    }
+}
+
+
 exports.trackEmail = async (req, res) => {
+    res.setHeader('Content-Type', 'image/png');
+    res.sendFile(path.join(__dirname, '../media/hideImage.png'));
+
+
     const { email } = req.query;
+
 
     if (!email) {
         return res.status(400).send('Missing email');
@@ -88,12 +119,23 @@ exports.trackEmail = async (req, res) => {
                 viewCount: 1
             });
         }
-
-        res.setHeader('Content-Type', 'image/png');
-        res.sendFile(path.join(__dirname, '../media/hilo.png'));
+        
 
     } catch (error) {
         console.error('Error logging email open:', error);
         res.status(500).send('Internal Server Error');
+    }
+}
+
+
+exports.emailDelet = async (req, res) => {
+    const emailId = req.params.id;
+    try {
+        // Delete email from the database
+        await EmailOpen.findByIdAndDelete(emailId);
+        res.redirect('/status'); // Redirect to the home page or any other page
+    } catch (error) {
+        console.error('Error deleting email:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' })
     }
 }

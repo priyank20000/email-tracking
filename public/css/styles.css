@@ -1,0 +1,160 @@
+ /* Paste the CSS code here */
+        /*=============== VARIABLES CSS ===============*/
+        :root {
+            /*========== Colors ==========*/
+            /*Color mode HSL(hue, saturation, lightness)*/
+            --white-color: hsl(0, 0%, 100%);
+            --black-color: hsl(0, 0%, 0%);
+            /*========== Font and typography ==========*/
+            /*.5rem = 8px | 1rem = 16px ...*/
+            --body-font: "Poppins", sans-serif;
+            --h1-font-size: 1.75rem;
+            --normal-font-size: 1rem;
+            --small-font-size: .813rem;
+            /*========== Font weight ==========*/
+            --font-medium: 500;
+            /*========== Background Image ==========*/
+            --background-img: url('/img/login-bg.png'); /* Change 'your-background-image-url.jpg' to your image URL */
+          }
+  
+          /*=============== BASE ===============*/
+          * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+          }
+  
+          body,
+          input,
+          button {
+            font-size: var(--normal-font-size);
+            font-family: var(--body-font);
+          }
+  
+          body {
+            color: var(--white-color);
+            background: var(--background-img) no-repeat center center fixed; /* Set background image */
+            background-size: cover;
+          }
+  
+          input,
+          button {
+            border: none;
+            outline: none;
+          }
+  
+          a {
+            text-decoration: none;
+          }
+  
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+  
+          /*=============== FORM STYLES ===============*/
+          .container {
+            margin: 100px auto;
+            padding: 20px;
+            width: 600px;
+            background-color: rgba(0, 0, 0, 0.6); /* Transparent background */
+            border-radius: 10px;
+          }
+  
+          h3 {
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+          }
+  
+          .alert {
+            position: fixed;
+            top: 8%;
+            right: -1px;
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%);
+            padding: 15px 49px;
+            /* background-color: rgba(255, 255, 255, 0.9); */
+            color: #000;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            display: none;
+            width: 25rem;
+        }
+        .alert.active {
+            display: block; /* Show the alert when it has the active class */
+        }
+        
+  
+          .form-group {
+            margin-bottom: 20px;
+          }
+  
+          label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+            font-weight: bold;
+          }
+  
+          .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            border: none;
+          }
+  
+          .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+          }
+  
+          .btn-info {
+            background-color: #3498db;
+            color: #fff;
+          }
+  
+          .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+          }
+  
+          .table th,
+          .table td {
+            padding: 10px;
+            border: 1px solid #fff;
+            text-align: left;
+            color: #fff;
+          }
+  
+          .table th {
+            background-color: #2980b9;
+            font-weight: bold;
+          }
+  
+          .table tr:nth-child(even) {
+            background-color: #2c3e50;
+          }
+  
+          .table tr:hover {
+            background-color: #34495e;
+          }
+  
+          .btn-danger {
+            background-color: #e74c3c;
+            color: #fff;
+          }
+  
+          .btn-danger:hover {
+            background-color: #c0392b;
+          }

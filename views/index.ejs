@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    
+</head>
+<body>
+    <!-- Include navbar -->
+    <%- include('navbar') %>
+    <div class="container">
+        <h3>How to Track Email Open or Not using Node.js</h3>
+        <br />
+        
+        <form method="post" action="/send"> <!-- Assuming your endpoint for sending email is '/send-email' -->
+            <div class="form-group">
+                <label>Enter Email Subject</label>
+                <input type="text" name="subject" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Enter Receiver Email</label>
+                <input type="email" name="to" class="form-control" required />
+            </div>  
+            <div class="form-group">
+                <label>Enter Email Body</label>
+                <textarea name="html" required rows="5" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-info" value="Send Email" />
+            </div>
+        </form>
+        <!-- Message alert -->
+        <% if (message) { %>
+            <div class="alert active" id="message-alert"><%= message %></div>
+        <% } %>
+        <!-- End of message alert -->
+        <br />
+    </div>
+
+    <script>
+        // Automatically close the message alert after 5 seconds
+        setTimeout(function() {
+            var alert = document.getElementById('message-alert');
+            if (alert) {
+                alert.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

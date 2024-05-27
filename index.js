@@ -10,9 +10,11 @@ dotenv.config({path:".env"})
 const app = express()
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(express.json())
 app.use(router)
-
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 server().then(()=>{
     console.log("Database Connect Successfully");

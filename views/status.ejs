@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sending Email Open or Not Status</title>
+    <link rel="stylesheet" href="/css/status.css">
+    <!-- Include Font Awesome library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="form-container">
+        <h3 class="form-heading">Sending Email Open or Not Status</h3>
+        <div class="data-table-responsive"> <!-- Added class to center the table -->
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th width="20%">Email</th>
+                        <th width="35%">Subject</th>
+                        <th width="10%">Status</th>
+                        <th width="20%">Open Datetime</th>
+                        <th width="15%">View Count</th>
+                        <th>Action</th><!-- Changed column name -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (emails.length > 0) { %>
+                        <% emails.forEach(email => { %>
+                            <tr>
+                                <td><%= email.email %></td>
+                                <td><%= email.subject %></td>
+                                <td><%= email.status === 'opened' ? 'Open' : email.status === 'reopened' ? 'Reopened' : 'Not Open' %></td>
+                                <td><%= email.openedAt ? email.openedAt.toLocaleString() : 'N/A' %></td>
+                                <td><%= email.viewCount %></td>
+                                <td><a href="/delete-email/<%= email._id %>" class="delete-btn"><i class="fas fa-trash-alt"></i></a></td> <!-- Replaced with trash icon -->
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" align="center">No Email Send Data Found</td> <!-- Adjusted colspan to match the number of columns -->
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

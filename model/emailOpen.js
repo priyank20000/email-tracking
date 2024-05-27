@@ -10,6 +10,10 @@ const emailOpenSchema = new mongoose.Schema({
         type:String,
         required:false
     },
+    to:{
+        type:String,
+        required:false
+    },
     status:{
         type:String,
         enum:["new" , "opened" , "reopened"],
@@ -31,10 +35,6 @@ const emailOpenSchema = new mongoose.Schema({
         type:Number,
         default: 0,
         required:false
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
     }
 },
 {
