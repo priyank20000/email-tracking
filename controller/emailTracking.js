@@ -57,7 +57,7 @@ exports.createEmail = async (req, res) => {
                 subject: subject,
                 html: html,
                 to: to,
-                email: to,
+                email: randomId,
                 status: 'new',
                 openedAt: null,
                 viewCount: 0
